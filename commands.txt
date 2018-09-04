@@ -1,0 +1,54 @@
+docker run -ti --rm --name server ubuntu:14.04 bash
+
+docker run -ti --rm --link server --name client ubuntu:14.04 bash
+
+docker network create <network-name>
+
+docker run -ti --rm --net=example --name server ubuntu:14.04 bash
+docker run -ti --rm --link server --net=example --name client ubuntu:14.04 bash
+
+
+docker images
+docker commit <container-id> <image-name>:<tag-name>
+
+docker rmi <image-id>
+
+docker run -ti -v /home/sharif/Desktop/docker_doc:/share ubuntu bash
+docker run -ti -v <my-pc-location>:<docker-location> ubuntu bash
+
+docker run -ti -v /share-data ubuntu bash
+docker run -ti -v <location> ubuntu bash
+
+docker run -ti --volumes-from <container-name> ubuntu bash
+
+docker search <search-text>
+hub.docker.com
+
+docker login
+docker tag debian:sid techsharif/test-123:v1
+
+docker build -t <docker-name>
+docker build -t <docker-name> . 
+
+apt install bridge-utils
+brctl show
+docker network create my-new-network 
+
+sudo iptables -n -L -t nat
+
+docker run -ti --rm --net=host ubuntu:16.04 bash
+
+docker run -ti --rm --net=host --privileged=true ubuntu:16.04 bash
+
+
+
+docker run -ti --rm -p 8080:8080 ubuntu bash 
+
+
+docker inspect --format '{{.State.Pid}}' hello # collect process-number
+docker run -ti --rm --pid=host --privileged=true ubuntu bash
+kill <process-number>
+
+
+
+

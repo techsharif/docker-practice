@@ -1,0 +1,43 @@
+FROM debian:sid
+RUN apt-get -y update
+RUN apt-get install nano
+CMD "nano" "/tmp/notes"
+
+ADD notes.txt /notes.txt
+
+# need to learn ENV 
+# need to learn ENTRYPOINT
+
+
+EXPOSE 8080
+
+VOLUME ["/host/path" "/container/path"]
+VOLUME ["/container/path"] # avoid
+WORKDIR /install
+
+USER <user-name>
+USER <user-number>
+
+https://docs.docker.com/engine/reference/builder/
+
+
+# first try
+FROM ubuntu:16.04
+RUN apt-get -y update
+RUN apt-get -y install curl
+RUN curl https://google.com | wc -c > google-size
+ENTRYPOINT echo google is this big; cat google-size
+
+
+# efficient try
+FROM ubuntu:16.04 as builder
+RUN apt-get -y update
+RUN apt-get -y install curl
+RUN curl https://google.com | wc -c > google-size
+
+FROM alpine
+COPY --from=builder /google-size /google-size
+ENTRYPOINT echo google is this big; cat google-size
+
+
+# need to learn kernel features ( cgroups, namespaces, copy-on-write )
