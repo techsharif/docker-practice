@@ -51,4 +51,14 @@ kill <process-number>
 
 
 
+COW -> copy on write
+
+
+mount -o bind other work
+umount work
+
+docker run -d -p 5000:5000 --restart=always --name registry registry:2
+docker tag ubuntu:14.04 localhost:5000/techsharif/my-ubuntu:99
+
+docker push localhost:5000/techsharif/my-ubuntu:99 
 
